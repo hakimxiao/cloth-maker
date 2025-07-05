@@ -1,5 +1,3 @@
-import React from "react";
-
 import state from "../store";
 import { useSnapshot } from "valtio";
 
