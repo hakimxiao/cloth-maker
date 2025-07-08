@@ -43,7 +43,22 @@ const Shirt = () => {
         material-roughness={1} // Menentukan kekasaran material, 1 = sangat kasar (tidak memantulkan cahaya)
         dispose={null} // Mencegah auto-dispose saat mesh di-unmount
       >
-        {/* Mesh ditutup tanpa konten tambahan */}
+        {snap.isFullTexture && (
+          <Decal
+            position={[0, 0, 0]}
+            rotation={[0, 0, 0]}
+            scale={1}
+            map={fullTexture}
+          />
+        )}
+        {snap.isLogoTexture && (
+          <Decal
+            position={[0, 0.04, 0.15]}
+            rotation={[0, 0, 0]}
+            scale={0.15}
+            map={logoTexture}
+          />
+        )}
       </mesh>
     </group>
   );
