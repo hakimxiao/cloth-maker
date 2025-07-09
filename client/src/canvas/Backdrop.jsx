@@ -8,7 +8,6 @@ const Backdrop = () => {
   return (
     <AccumulativeShadows position={[0, 0, -0.14]}>
       <RandomizedLight amount={4} />
-      <RandomizedLight />
     </AccumulativeShadows>
   );
 };
