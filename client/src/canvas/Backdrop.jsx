@@ -1,7 +1,16 @@
-import React from "react";
+import React, { useRef } from "react";
+import { easing } from "maath";
+import { useFrame } from "@react-three/fiber";
+import { useGLTF } from "@react-three/drei";
+import { AccumulativeShadows, RandomizedLight } from "@react-three/drei";
 
 const Backdrop = () => {
-  return <div>Backdrop</div>;
+  return (
+    <AccumulativeShadows position={[0, 0, -0.14]}>
+      <RandomizedLight amount={4} />
+      <RandomizedLight />
+    </AccumulativeShadows>
+  );
 };
 
 export default Backdrop;
