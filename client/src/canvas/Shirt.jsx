@@ -31,10 +31,16 @@ const Shirt = () => {
   const logoTexture = useTexture(snap.logoDecal);
   const fullTexture = useTexture(snap.fullDecal);
 
+  useFrame((state, delta) =>
+    easing.dampE(materials.lambert1.colorWrite.snap.color, 0.25, delta)
+  );
+
+  const stateString = JSON.stringify(snap);
+
   // Komponen JSX yang dirender
   return (
-    // Group adalah wadah (seperti <div> di HTML) untuk mengelompokkan objek 3D
-    <group>
+    // render ulang ketika state berubah
+    <group key={stateString}>
       {/* Mesh adalah objek 3D yang memiliki geometry (bentuk) dan material (warna/tekstur) */}
       <mesh
         castShadow // Membuat objek ini bisa memproyeksikan bayangan
@@ -57,6 +63,9 @@ const Shirt = () => {
             rotation={[0, 0, 0]}
             scale={0.15}
             map={logoTexture}
+            map-anisotropy={16} // Meningkatkan kualitas tekstur pada sudut tertentu
+            depthTest={false} // Menghindari pengujian kedalaman, sehingga decal selalu
+            depthWrite={true} // Mengizinkan penulisan kedalaman, sehingga decal dapat terlihat di atas objek lain
           />
         )}
       </mesh>
